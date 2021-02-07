@@ -1,0 +1,211 @@
+/* COMMON */
+.body__container {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+}
+a {
+    text-decoration: none;      /* "text-decoration"은 텍스트의 줄 속성 */
+}
+
+/* BTN */
+.btn {
+    height: 34px;
+    background: #eee linear-gradient(to bottom, #fcfcfc, #eee);
+    border: 1px solid #d5d5d5;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;     /* position값이 필요한데 없다면, relative로 설정 */
+    color: #333;
+}
+.btn:hover::before {
+    content: "";
+    position: absolute;     /* 부모 요소에 반드시 position값이 있어야 한다. */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.07);        /* 7%의 투명도 */
+}
+.btn.btn--primary {
+    border: 1px solid #65b836;
+    color: #fff;
+    background: #55a532 linear-gradient(#91dd70, #55ae2e);
+}
+
+/* INPUT TEXT */
+.input--text {
+    height: 34px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;      /* 검색창이 활성화 되었을 때 포커싱 되지 않음 */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);      /* X축, y축, 블러, 색상 순, inset은 안으로 들어가보이게 설정 */
+    font-size: 16px;
+}
+.input--text:focus {    /* 검색창이 활성화 되었을 때 포커싱 스타일 설정 */
+    border-color: #51a7e8;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075),
+                0 0 5px rgba(81, 167, 232, 0.5);
+    /* 포커싱이 되기 전 스타일을 유지하면서 포커싱이 되면 새로운 스타일이 보이게 하려면 기존 스타일을 앞에 붙여넣고 새로운 스타일을 정의한다. */
+} 
+/* Vendor Prefix (브라우저 업체별 접두사)
+    placeholder의 색상을 바꾸는 것을 표준이 아니기 때문에 작성한다.*/
+.input--text::-webkit-input-placeholder { color: #cacaca; }      /* google Chrome */
+.input--text::-ms-input-placeholder { color: #cacaca; }      /* IE 또는 Edge*/
+.input--text::-moz-input-placeholder { color: #cacaca; }      /* FireFox */
+
+/* FLOAT CLEARFIX (MENU의 좌,우 정렬을 위한 정의) */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+.float--left {
+    float: left;
+}
+.float--right {
+    float: right;
+}
+
+/* SUMMARY (본문 스타일을 위한 정의) */
+.summary {
+
+}
+.summary__title {
+    font-size: 38px;
+    font-weight: 300;       /* 400이 nomal */
+    line-height: 1.25;      /* 행간조절 */
+    margin-bottom: 18px;
+}
+.summary__description {
+    font-size: 26px;
+    font-weight: 300;
+    color: #767676;
+    line-height: 1.5;
+}
+
+/* SECTION & INNER (콘텐츠 가운데 정렬을 위한 공통 정의) */
+.section {      /* inner 부분이 아닌 다른곳에 컨텐츠를 작성할 때 사용 */
+    position: relative;     /* 부모요소에 반드시 추가한다 */
+}
+.section .inner {
+    max-width: 980px;       /* 980px이 사이즈 최대값 */
+    margin: 0 auto;     /* 가운데정렬 */
+    box-sizing: border-box;     /* padding으로 인해 사이즈가 커지는 것을 방지한다 */
+    position: relative;     /* 부모요소에 반드시 추가해야한다 */
+}
+
+/* HEADER */
+header {
+    border-bottom: 1px solid rgba(0, 0, 0, .75);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .75);
+    background: #fff;
+}
+header .inner {
+    height: 78px;       /* header에 정의할 경우 두번 입력해야한다. */
+}
+header .menu-group {
+    display: flex;      /* 기본 수직정렬에서 수평정렬로 바꿔준다 */
+    align-items: center;    /* 수직 가운데 정렬을 한다 */
+    height: 100%;           /* 높이를 정의해야 수직 가운데 정렬이 가능하다 */
+}
+header .logo {
+    margin-right: 10px;
+}
+header .logo a {
+    background: url("../img/logo.svg");     /* "../"는 현재 위치에서 밖으로 나가라 */
+    width: 32px;
+    height: 32px;
+    display: block;     /* a태그는 inline요소이기 때문에 block으로 정의해야함 */
+    text-indent: -9999px;      /* 들여쓰기 태그를 통해 텍스트를 밖으로 내보낸다 */
+    /* -9999px은 대체 텍스트를 사용했다는 약속 */
+}
+header .logo a:hover {
+    background: url("../img/logo_on.svg");
+}
+header .main-menu {
+    display: flex;      /* 기본 수직정렬에서 수평정렬로 바꿔준다 */
+}
+header .main-menu li a {        /* 실질적으로 클릭되는 부분은 a태그이기 때문에 a태그에 정의 */
+    display: block;     /* a태그는 inline 요소기 때문에 block 처리해야함 */
+    padding: 10px;      /* margin 대신 padding을 쓰는 이유는 링크의 범위를 넓혀주기 위해 */
+    color: #3c4146;
+}
+header .main-menu li a:hover {
+    color: #4078c0;
+}
+header .sign-group {
+    display: flex;      /* 기본 수직정렬에서 수평정렬로 바꿔준다 */
+    align-items: center;        /* 수직 가운데 정렬을 한다 */
+    height: 100%;       /* 높이를 정의해야 수직 가운데 정렬이 가능하다 */
+}
+header .btn-group {
+    order: 2;     /* 값이 높을수록 순서가 뒤로 밀려난다 */
+    display: flex;      /* 버튼과 버튼사이의 공간이 사라진다 */
+}
+header .btn-group .sign-in{
+    margin-right: 4px;
+}
+#search-form {
+    order: 1;
+    margin-right: 12px;
+}
+#search {
+    width: 160px;
+    font-size: 14px;
+}
+#search + [type="submit"] {    /* "+"는 다음형제를 지칭할때 사용한다 */ 
+    display: none;      /* submit 버튼을 사라지게 만든다 */ 
+}
+header .sub-menu {     /* "order: 0;"은 생략한다 */
+    display: flex;      /* 기본 수직정렬에서 수평정렬로 바꿔준다 */
+    margin-right: 10px;
+}
+header .sub-menu li a {     /* 실질적으로 클릭되는 부분은 a태그이기 때문에 a태그에 정의 */
+    padding: 8px;       /* margin 대신 padding을 쓰는 이유는 링크의 범위를 넓혀주기 위해 */
+    display: block;     /* a태그는 inline 요소기 때문에 block 처리해야함 */
+    font-size: 13px;
+    color: #3c4146;
+}
+header .sub-menu li a:hover {
+    color: #4078c0;
+}
+
+/* VISUAL */
+.section--visual {
+    background-image: url("../img/bg.jpg");     /* 이미지가 inner 밖까지 차지하므로 배경이미지로 삽입 */
+    background-repeat: no-repeat;       /* 이미지가 반복되지않고 하나로 고정 */
+    background-position: bottom left;
+    background-size: cover;     /* 사이즈를 줄여도 이미지가 잘리지 않음 */
+}
+.section--visual::before {      /* 이미지를 어둡게 하기 위해 정의 */
+    content: "";        /* "::before"를 정의할 땐 반드시 사용 */
+    position: absolute;     /* common에 부모요소에 position값을 이미 정의함 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .3);
+}
+.section--visual .inner {       /* 콘텐츠 가운데 정렬 */
+    padding: 160px 0;
+}
+.section--visual .summary__title {      
+    color: #fff;        /* 특수한 경우에만 흰색이기 때문에 따로 정의해준다 */
+    font-size: 54px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .25),      /* x값 y값 블러값 색상 순 */
+                 0 1px 25px rgba(0, 0, 0, .75);      /* 설정값을 ,로 추가할 수 있다 (은은한 그림자 설정) */
+}
+.section--visual .summary__description {
+    
+}
